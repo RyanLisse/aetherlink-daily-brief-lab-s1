@@ -4,7 +4,7 @@ Status per step. VERIFIED means the proof command ran and a reviewer reran it; O
 
 | Step | Artifact | Proof | Status |
 | --- | --- | --- | --- |
-| 1 | intent.md | facilitator accepts the boundary | OPEN |
+| 1 | intent.md | facilitator accepts the boundary | VERIFIED in the reference solution; rerun it yourself |
 | 2 | docs/spec.md, src/brief.ts, sample, test/schema.test.ts | npm test (schema) | OPEN |
 | 3 | docs/design.md, docs/decisions/ADR-001, docs/plan.md | plan accepted before build | OPEN |
 | 4 | src/render.ts, src/main.ts | npm run brief:sample | OPEN |
