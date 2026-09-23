@@ -10,6 +10,6 @@ Status per step. VERIFIED means the proof command ran and a reviewer reran it; O
 | 4 | src/render.ts, src/main.ts | npm run brief:sample | VERIFIED in the reference solution; rerun it yourself |
 | 5 | src/sources.ts, src/agent.ts | npm test, npm run typecheck | VERIFIED in the reference solution; rerun it yourself |
 | 6 | docs/evidence.md, docs/evidence/*.png | three commands with a reviewer | VERIFIED in the reference solution; rerun it yourself |
-| 7 | docs/gate.md, gitlab-ci.example.yml | PASS / FAIL / OPEN with a quoted line | OPEN |
+| 7 | docs/gate.md, gitlab-ci.example.yml | PASS / FAIL / OPEN with a quoted line | VERIFIED in the reference solution; rerun it yourself |
 
 Live runs against a real source: OPEN until a token exists. A blocked credential is an access result, not a failure.
