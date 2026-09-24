@@ -12,8 +12,8 @@ Academy Workshop 5 walks this repository as the AI-native SDLC guided lesson (Ac
 | Step | Phase | You write | Proof |
 | --- | --- | --- | --- |
 | 1 | Plan | `intent.md` | A facilitator accepts the boundary |
-| 2 | Plan | `docs/spec.md`, `src/brief.ts`, `sample/brief.sample.json`, `test/schema.test.ts` | `npm test` green on the schema tests |
-| 3 | Design | `docs/design.md`, one ADR, `docs/plan.md` | A stranger can follow the plan and name what proves completion |
+| 2 | Design | `docs/spec.md`, `src/brief.ts`, `sample/brief.sample.json`, `test/schema.test.ts` | `npm test` green on the schema tests |
+| 3 | Build | `docs/design.md`, one ADR, `docs/plan.md` | A stranger can follow the plan and name what proves completion |
 | 4 | Build | `src/render.ts`, `src/main.ts` | `npm run brief:sample` writes `out/latest.html` |
 | 5 | Build | `src/sources.ts`, `src/agent.ts` | `npm test` and `npm run typecheck` green; wiring proven without a network |
 | 6 | Test | `docs/evidence.md` and one screenshot | Three commands with exit codes and a reviewer |
@@ -58,3 +58,4 @@ Put the two source PDFs (the Dia "Tuesday Brief" and "Wednesday Brief") in
 `reference/` so step 2 can quote them. They are not part of this repository.
 
 Walking it alone, with your own GitHub, Linear and Notion: `SOLO.md`.
+
