@@ -82,6 +82,8 @@ plan mode: read-only until you accept the plan.
 - Reference: `git diff step-3-design -- docs/plan.md`
 - Check: can a stranger name what proves each step complete?
 
+- Claude Code cue: **subagents** — spawn only when `docs/plan.md` names a parallel read; add when needed.
+
 ### 4 · Build — render the sample, the first artifact (25 min)
 
 `test/render.test.ts` red, then `src/render.ts` and a sample-only
@@ -122,6 +124,9 @@ line is a tool call. Then read `out/latest.html`.
   Did the model get no shell and no write? Where is the human — after the
   run, not inside it?
 
+- Claude Code cue: **skills** — a slash skill only when this SOLO needs one; add when needed.
+- Claude Code cue: **MCP** — connected sources already show on the `mcp=[…]` line in `run.log`; add a server only if this step needs one.
+
 ### 6 · Test — record the evidence (15 min)
 
 `docs/evidence.md`: three commands with the exit code you saw and one quoted
@@ -142,6 +147,9 @@ repository secrets and publishes `out/latest.html` as an artifact
 
 - Check: does no PASS rest on a check you did not read? Is every credential
   in a secret, none in the repo?
+
+- Claude Code cue: **hooks** — at `docs/gate.md`, a stop/ask hook when needed.
+- Claude Code cue: **workflows** — weekday schedule is this step (Actions / cron); extend when needed.
 
 ## When you are done
 

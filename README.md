@@ -5,6 +5,8 @@ that reads GitLab, Jira, Confluence and the Outlook calendar (or your own GitHub
 writes a one-page brief. `main` is empty on purpose: templates, a package
 skeleton and nothing else. Every step of the lesson leaves one artifact here.
 
+Academy Workshop 5 walks this repository as the AI-native SDLC guided lesson (Academy host path `/workshop/5`).
+
 ## The steps
 
 | Step | Phase | You write | Proof |
@@ -16,6 +18,10 @@ skeleton and nothing else. Every step of the lesson leaves one artifact here.
 | 5 | Build | `src/sources.ts`, `src/agent.ts` | `npm test` and `npm run typecheck` green; wiring proven without a network |
 | 6 | Test | `docs/evidence.md` and one screenshot | Three commands with exit codes and a reviewer |
 | 7 | Deploy | `docs/gate.md`, `gitlab-ci.example.yml` | PASS / FAIL / OPEN with a quoted line |
+
+## Always-on artifacts
+
+`CLAUDE.md` · `AGENTS.md` · `progress.md` · `SOLO.md` — read before you change anything; append `progress.md` each SOLO.
 
 ## How to work
 
