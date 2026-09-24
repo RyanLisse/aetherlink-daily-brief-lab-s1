@@ -62,7 +62,7 @@ file in place; then cut.
 - Gate: you are your own facilitator here. Read the boundary aloud. If any
   line is a wish rather than a rule, it is NEEDS REVISION — no step 2 yet.
 
-### 2 · Plan — spec and contract, test first (25 min)
+### 2 · Design — spec and contract, test first (25 min)
 
 `docs/spec.md` with one quoted example per field from the two reference PDFs
 in `reference/`; then `test/schema.test.ts` red; then `src/brief.ts` and
@@ -72,7 +72,7 @@ in `reference/`; then `test/schema.test.ts` red; then `src/brief.ts` and
 - Check: does `git log` show the test commit before `brief.ts`? Does every
   field in `brief.ts` have a spec row with a quote?
 
-### 3 · Design — one decision, a plan with proof (15 min)
+### 3 · Build — one decision, a plan with proof (15 min)
 
 `docs/design.md` (the parts), one ADR in `docs/decisions/` for one decision
 you actually made, `docs/plan.md` with ordered steps, exact paths, one proof
