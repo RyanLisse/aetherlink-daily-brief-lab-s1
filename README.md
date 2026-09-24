@@ -59,14 +59,3 @@ Put the two source PDFs (the Dia "Tuesday Brief" and "Wednesday Brief") in
 
 Walking it alone, with your own GitHub, Linear and Notion: `SOLO.md`.
 
-## Workshop slides
-
-`slides/` holds the workshop deck: one beat per step, each split into
-explain → demo → you do it, with one definition per slide. No build step:
-
-```bash
-python3 -m http.server 8080 -d slides   # → http://localhost:8080/#1
-```
-
-Stages follow Anthropic's AI-native SDLC playbook: Plan (intent) · Design (spec) ·
-Build (plan, render, agent) · Test · Deploy · Maintain.
