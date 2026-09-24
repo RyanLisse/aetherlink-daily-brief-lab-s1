@@ -7,7 +7,8 @@ Static deck, no build step. Serve the folder and open it:
 Keys: ← → navigate · N speaker notes · F fullscreen · `#12` jumps to slide 12.
 PDF: open `/?print` and Save as PDF (1280×800 pages).
 
-Content lives in `slides.js`, one object per slide. Every beat is
+Content lives in `slides.js`, one object per concept. A concept with a term expands to
+look (the visual) → definition → what we do with it; then
 `explain` (cyan) → `demo` (violet) → `do` (amber, with a timer and a "Done when" check).
 The rail at the bottom shows the playbook stage: Plan · Design · Build · Test · Deploy · Maintain.
 

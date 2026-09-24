@@ -1,6 +1,6 @@
 const STAGES = ["Plan", "Design", "Build", "Test", "Deploy", "Maintain"];
 const ARTIFACTS = ["intent.md", "spec.md", "plan.md", "evidence.md", "gate.md", "finding"];
-const KIND = { explain: "Explain", demo: "Demo", do: "You do it" };
+const KIND = { see: "Look", define: "Definition", explain: "What we do with it", demo: "Demo", do: "You do it" };
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 // `inline code` in slide text; everything else is escaped.
 const md = (s) => esc(s).replace(/`([^`]+)`/g, "<code>$1</code>");
@@ -16,7 +16,7 @@ const VISUALS = {
       const x = c + r * Math.cos(a), y = c + r * Math.sin(a);
       return `<g class="node${s === active ? " on" : ""}"><circle cx="${x}" cy="${y}" r="46"/><text x="${x}" y="${y - 3}" class="n">${s}</text><text x="${x}" y="${y + 15}" class="a">${ARTIFACTS[k]}</text></g>`;
     }).join("");
-    return `<svg viewBox="0 0 380 380" class="cycle" role="img" aria-label="Six SDLC stages in a loop"><circle cx="${c}" cy="${c}" r="${r}" class="ring"/>${nodes}<text x="${c}" y="${c - 4}" class="mid">a person</text><text x="${c}" y="${c + 16}" class="mid">judges each file</text></svg>`;
+    return `<svg viewBox="0 0 380 380" class="cycle" role="img" aria-label="Six SDLC stages in a loop"><circle cx="${c}" cy="${c}" r="${r}" class="ring"/>${nodes}<circle cx="${c}" cy="${c}" r="54" class="ai"/><text x="${c}" y="${c + 9}" class="ai-t">AI</text></svg>`;
   },
   flow() {
     const box = (t, sub, cls = "") => `<div class="box ${cls}"><b>${t}</b><span>${sub}</span></div>`;
@@ -58,9 +58,16 @@ const VISUALS = {
   chain: () => `<div class="chainv">${["intent.md", "spec.md", "plan.md", "latest.html", "evidence.md", "gate.md"].map((a) => `<span>${a}</span>`).join("<i>↓</i>")}</div>`,
 };
 
-// Demo and do slides carry the term of the explain slide before them.
-let lastTerm = null;
-const TERMS = SLIDES.map((s) => (s.term ? (lastTerm = s) : s.kind === "demo" || s.kind === "do" ? lastTerm : null));
+/* A slide with a term becomes three: its visual alone, the definition, then the slide
+   ("what we do with it"). Section slides keep their cycle; the title slide goes first. */
+const DECK = SLIDES.flatMap((s) => {
+  if (!s.term) return [s];
+  const at = { stage: s.stage, step: s.step, notes: s.notes };
+  const see = s.visual && { ...at, kind: "see", title: s.term, visual: s.visual };
+  const define = { ...at, kind: "define", title: s.term, lead: s.def };
+  const body = { ...s, visual: undefined };
+  return (s.kind === "title" ? [body, see, define] : [see, define, body]).filter(Boolean);
+});
 
 function render(s, k) {
   const out = [];
@@ -68,8 +75,6 @@ function render(s, k) {
   if (eyebrow.length) out.push(`<p class="eyebrow">${eyebrow.join("")}</p>`);
   out.push(`<h1>${md(s.title)}</h1>`);
   if (s.lead) out.push(`<p class="lead">${md(s.lead)}</p>`);
-  const t = TERMS[k];
-  if (t) out.push(`<dl class="def${t === s ? "" : " small"}"><dt>${esc(t.term)}</dt><dd>${md(t.def)}</dd></dl>`);
   if (s.chain) out.push(`<div class="chain">${s.chain.map((c) => `<span>${esc(c)}</span>`).join("<i>→</i>")}</div>`);
   if (s.cols) out.push(`<div class="cols" style="--n:${s.cols.length > 4 ? 3 : s.cols.length}">${s.cols.map(([b, t]) => `<div><b>${md(b)}</b><span>${md(t)}</span></div>`).join("")}</div>`);
   if (s.code) out.push(`${s.codeLabel ? `<span class="label">${esc(s.codeLabel)}</span>` : ""}<pre><code>${esc(s.code)}</code></pre>`);
@@ -77,6 +82,7 @@ function render(s, k) {
   if (s.steps) out.push(`<ol class="steps">${s.steps.map((p) => `<li><span>${md(p)}</span></li>`).join("")}</ol>`);
   if (s.check) out.push(`<p class="check"><strong>Done when:</strong> ${md(s.check)}</p>`);
   const text = out.join("");
+  if (s.kind === "see") return `${out[0] || ""}<div class="visual solo">${VISUALS[s.visual](s.stage)}</div>`;
   return s.visual ? `<div class="split"><div class="text">${text}</div><div class="visual">${VISUALS[s.visual](s.stage)}</div></div>` : text;
 }
 
@@ -85,29 +91,29 @@ const notes = document.getElementById("notes");
 
 if (location.search.includes("print")) {
   // ?print → every slide stacked, one per page, for Save as PDF.
-  document.body.innerHTML = SLIDES.map((s, k) => `<section class="print-slide" data-kind="${s.kind}">${render(s, k)}</section>`).join("");
+  document.body.innerHTML = DECK.map((s, k) => `<section class="print-slide" data-kind="${s.kind}">${render(s, k)}</section>`).join("");
 } else {
   const rail = document.getElementById("rail");
   rail.innerHTML = STAGES.map((n) => `<li>${n}</li>`).join("");
   let i = 0;
   const show = (n) => {
-    i = Math.max(0, Math.min(SLIDES.length - 1, n));
-    const s = SLIDES[i];
+    i = Math.max(0, Math.min(DECK.length - 1, n));
+    const s = DECK[i];
     main.dataset.kind = s.kind;
     main.innerHTML = render(s, i);
     main.style.animation = "none"; void main.offsetWidth; main.style.animation = "";
     notes.textContent = s.notes || "—";
     const at = STAGES.indexOf(s.stage);
     [...rail.children].forEach((li, k) => { li.className = k === at ? "on" : k < at ? "done" : ""; });
-    document.getElementById("count").textContent = `${i + 1} / ${SLIDES.length}`;
-    document.getElementById("bar").style.width = `${((i + 1) / SLIDES.length) * 100}%`;
+    document.getElementById("count").textContent = `${i + 1} / ${DECK.length}`;
+    document.getElementById("bar").style.width = `${((i + 1) / DECK.length) * 100}%`;
     history.replaceState(null, "", `#${i + 1}`);
   };
   addEventListener("keydown", (e) => {
     if (["ArrowRight", "PageDown", " "].includes(e.key)) show(i + 1);
     else if (["ArrowLeft", "PageUp"].includes(e.key)) show(i - 1);
     else if (e.key === "Home") show(0);
-    else if (e.key === "End") show(SLIDES.length);
+    else if (e.key === "End") show(DECK.length);
     else if (e.key.toLowerCase() === "n") notes.hidden = !notes.hidden;
     else if (e.key.toLowerCase() === "f") document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
   });

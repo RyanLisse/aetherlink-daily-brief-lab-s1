@@ -1,8 +1,9 @@
 /* One object per slide. kind: title | section | explain | demo | do
    Fields: stage (SDLC stage), step (lab step), title, lead, points, cols [[head, text]],
    chain, steps, code (+ codeLabel), check, time (minutes), notes (press N).
-   term + def: the definition box. Demo and do slides inherit the previous term.
-   visual: a drawing from VISUALS in app.js, shown on the right.
+   term + def + visual: one concept. app.js expands it into three slides:
+   the visual alone → the definition → this slide ("what we do with it").
+   Section slides show their visual (the cycle) beside the title.
    `backticks` render as inline code. Lab refs: github.com/RyanLisse/aetherlink-daily-brief-lab-s1 */
 window.SLIDES = [
 
@@ -11,7 +12,7 @@ window.SLIDES = [
   title: "Build a daily brief agent",
   lead: "The AI-native SDLC, hands-on. One agent, six stages, one artifact per step.",
   term: "AI-native SDLC",
-  def: "A software lifecycle where an agent does the reading, drafting and checking at every stage, and a person judges the file each stage commits.",
+  def: "A reimagined process that combines the old control objectives with new enforcement. Instead of a linear flow, the process becomes a loop, and AI is embedded at each point.",
   visual: "cycle",
   notes: "On screen while people come in. One sentence of welcome, then go straight to slide 2." },
 
@@ -31,7 +32,6 @@ window.SLIDES = [
   title: "Six stages, one artifact each",
   term: "Artifact",
   def: "A committed file that the next stage reads. The chain of artifacts is the workflow.",
-  visual: "cycle",
   chain: ["intent.md", "spec.md", "plan.md", "diff + tests", "evidence", "gate.md", "next intent.md"],
   notes: "The rail at the bottom of every slide is this cycle. Point at it: 'you always know where you are in the loop'." },
 

@@ -150,3 +150,13 @@ footer{display:flex;align-items:center;gap:1.5rem;padding:.9rem 4vw;font-size:.7
 .cycle .a{font-size:10px;fill:var(--muted);font-family:ui-monospace,Menlo,monospace}
 .cycle .mid{font-size:13px;fill:var(--muted)}
 .cycle .on circle{stroke:var(--explain);stroke-width:3}
+
+/* ── Concept sequence: look → definition → what we do with it ─────────── */
+.visual.solo{justify-content:center;margin-top:1rem}
+.visual.solo>*{max-width:620px;zoom:1.3}
+.visual.solo>.cycle{max-width:560px;zoom:1}
+[data-kind=see] .eyebrow{justify-content:center}
+[data-kind=define] h1{font-size:clamp(3rem,7vw,6rem);color:var(--explain);max-width:none;margin-bottom:1.6rem}
+[data-kind=define] .lead{font-size:clamp(1.4rem,2.4vw,2.1rem);line-height:1.35;color:var(--text);max-width:34ch}
+.cycle circle.ai{fill:var(--explain);stroke:none;filter:drop-shadow(0 0 18px #69e2f266)}
+.cycle text.ai-t{font-size:28px;font-weight:900;fill:var(--bg)!important}
