@@ -58,3 +58,17 @@ Put the two source PDFs (the Dia "Tuesday Brief" and "Wednesday Brief") in
 `reference/` so step 2 can quote them. They are not part of this repository.
 
 Walking it alone, with your own GitHub, Linear and Notion: `SOLO.md`.
+
+## Interactive course
+
+`course/` is a self-contained, six-module course that explains this lab's
+workflow to someone who has never read a spec: intent, spec, design and plan,
+the agent instructions, evidence and the gate, and the SOLO loop. Every code
+block quotes a file in this repository exactly. No install, no server:
+
+```bash
+open course/index.html
+```
+
+To change it, edit `course/modules/*.html` and rebuild with
+`cd course && bash build.sh`.

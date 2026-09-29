@@ -1,0 +1,194 @@
+<section class="module" id="module-5" style="background: var(--color-bg)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">05</span>
+      <h1 class="module-title">Evidence and the gate</h1>
+      <p class="module-subtitle">How the lab turns "it works" into a claim someone else can check, and who gets to say yes.</p>
+    </header>
+
+    <div class="module-body">
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Inside the courtroom</h2>
+        <p>A court does not accept "trust me." It wants exhibits, a witness who can be cross-examined, and a judge who reads them and rules. When the evidence is not in yet, the case is adjourned, which is not the same as losing.</p>
+        <p>Steps 6 and 7 run the same way. <code>docs/evidence.md</code> holds the exhibits. <code>docs/gate.md</code> records the ruling.</p>
+
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-success)">
+            <div class="pattern-icon" style="background: var(--color-success)">✅</div>
+            <h4 class="pattern-title">PASS</h4>
+            <p class="pattern-desc">Proven. A command ran, the output is quoted, and a second person reran it.</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-error)">
+            <div class="pattern-icon" style="background: var(--color-error)">❌</div>
+            <h4 class="pattern-title">FAIL</h4>
+            <p class="pattern-desc">It ran and the result contradicts the claim.</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-4)">
+            <div class="pattern-icon" style="background: var(--color-actor-4)">⏸️</div>
+            <h4 class="pattern-title">OPEN</h4>
+            <p class="pattern-desc">Not yet known. Unrun, or blocked by access. "A blocked credential is an access result, not a failure."</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The evidence table</h2>
+        <p>Look at how much the template demands per row. Each column closes a gap an overconfident author (human or AI) could slip through.</p>
+
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">docs/evidence.md</span>
+            <pre><code><span class="code-line">Every row is a claim with the command that proves it, the exit code you saw and</span>
+<span class="code-line">the person who reran it. A row without a reviewer is a hypothesis. A command</span>
+<span class="code-line">nobody ran is <span class="code-string">`OPEN`</span>, never a failure and never a pass.</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-comment">| Claim | Command | Exit code | Output line quoted | Reviewer | Status |</span></span>
+<span class="code-line"><span class="code-comment">| --- | --- | --- | --- | --- | --- |</span></span>
+<span class="code-line">| <span class="code-string">`TEMPLATE — the types hold`</span> | <span class="code-function">`npm run typecheck`</span> | <span class="code-number">`OPEN`</span> | <span class="code-number">`OPEN`</span> | <span class="code-string">`TEMPLATE`</span> | <span class="code-number">`OPEN`</span> |</span>
+<span class="code-line">| <span class="code-string">`TEMPLATE — the contract holds`</span> | <span class="code-function">`npm test`</span> | <span class="code-number">`OPEN`</span> | <span class="code-number">`OPEN`</span> | <span class="code-string">`TEMPLATE`</span> | <span class="code-number">`OPEN`</span> |</span>
+<span class="code-line">| <span class="code-string">`TEMPLATE — the page renders`</span> | <span class="code-function">`npm run brief:sample`</span> | <span class="code-number">`OPEN`</span> | <span class="code-number">`OPEN`</span> | <span class="code-string">`TEMPLATE`</span> | <span class="code-number">`OPEN`</span> |</span></code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl">Each row pairs a claim with the command that proves it...</p>
+              <p class="tl">...and a second person. Without that second person it is only a <span class="term" data-definition="A hypothesis is a claim that has not been independently tested yet. It might be true; nobody has confirmed it.">hypothesis</span>.</p>
+              <p class="tl">Not run = OPEN. Never quietly counted as a pass, never unfairly counted as a fail.</p>
+              <p class="tl">&nbsp;</p>
+              <p class="tl">Six columns: what you claim, how to check it, the <span class="term" data-definition="An exit code is the number a command returns when it ends. 0 means success; any other number means an error. It is harder to misread than a wall of output text.">exit code</span>, a copied line of real output, who reran it, and the verdict.</p>
+              <p class="tl">(Table divider.)</p>
+              <p class="tl">Claim 1: all data shapes line up. Proof: the <span class="term" data-definition="A typecheck asks the TypeScript compiler to verify every value is used the way its declared type allows. It finds whole classes of bugs without running the program.">typecheck</span>.</p>
+              <p class="tl">Claim 2: the brief's contract from the spec holds. Proof: the test suite.</p>
+              <p class="tl">Claim 3: the sample brief turns into a page. Proof: the sample run. All three start OPEN.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Follow one claim to a verdict</h2>
+        <p>Step through how "the contract holds" earns its place in the table.</p>
+
+        <div class="flow-animation" data-steps='[
+          {"highlight":"flow-ev-1","label":"Claim: the contract holds. Status starts at OPEN."},
+          {"highlight":"flow-ev-2","label":"You run npm test and see it finish.","packet":true,"from":"ev-1","to":"ev-2"},
+          {"highlight":"flow-ev-3","label":"You record the exit code (0) and copy one real output line.","packet":true,"from":"ev-2","to":"ev-3"},
+          {"highlight":"flow-ev-4","label":"A reviewer reruns the same command on their own machine, or you rerun it the next day and say so.","packet":true,"from":"ev-3","to":"ev-4"},
+          {"highlight":"flow-ev-5","label":"Only now does the row flip from OPEN, and progress.md can say VERIFIED.","packet":true,"from":"ev-4","to":"ev-5"}
+        ]'>
+          <div class="flow-actors">
+            <div class="flow-actor" id="flow-ev-1"><div class="flow-actor-icon">💬</div><span>Claim</span></div>
+            <div class="flow-actor" id="flow-ev-2"><div class="flow-actor-icon">⌨️</div><span>Command</span></div>
+            <div class="flow-actor" id="flow-ev-3"><div class="flow-actor-icon">🔢</div><span>Exit code + quote</span></div>
+            <div class="flow-actor" id="flow-ev-4"><div class="flow-actor-icon">👀</div><span>Reviewer</span></div>
+            <div class="flow-actor" id="flow-ev-5"><div class="flow-actor-icon">🏷️</div><span>Status</span></div>
+          </div>
+          <div class="flow-packet"></div>
+          <div class="flow-step-label">Click "Next Step" to begin</div>
+          <div class="flow-controls">
+            <button class="btn flow-next-btn">Next Step</button>
+            <button class="btn flow-reset-btn">Restart</button>
+            <span class="flow-progress"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The gate: robots observe, humans decide</h2>
+        <p>Step 7 opens a <span class="term" data-definition="A pull request (PR, or 'merge request' on GitLab) is a proposal to merge your branch into main. Others can read the changes, comment and approve before it goes in.">pull request</span> and fills <code>docs/gate.md</code>. The template draws a hard line between automated checks and approval.</p>
+
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">docs/gate.md</span>
+            <pre><code><span class="code-line"><span class="code-keyword">## What the automated checks observed</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-comment">| Check | Observed | Is it an approval? |</span></span>
+<span class="code-line"><span class="code-comment">| --- | --- | --- |</span></span>
+<span class="code-line">| <span class="code-string">`TEMPLATE — CI job`</span> | <span class="code-string">`TEMPLATE — what it actually ran`</span> | <span class="code-keyword">No</span> |</span>
+<span class="code-line">| <span class="code-string">`TEMPLATE — review bot`</span> | <span class="code-string">`TEMPLATE`</span> | <span class="code-keyword">No</span> |</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-keyword">## What the human read</span></span>
+<span class="code-line"></span>
+<span class="code-line">- <span class="code-property">Success check proven by this diff:</span> <span class="code-string">`TEMPLATE — quote the line from intent.md`</span></span>
+<span class="code-line">- <span class="code-property">Boundary touched by this diff:</span> <span class="code-string">`TEMPLATE — quote the line, or NONE`</span></span>
+<span class="code-line">- <span class="code-property">Line from the diff that decided it:</span> <span class="code-string">`TEMPLATE — quoted`</span></span></code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl">First, list what the machines did.</p>
+              <p class="tl">&nbsp;</p>
+              <p class="tl">For each automated check: what it is, what it actually ran, and whether that counts as approval.</p>
+              <p class="tl">(Table divider.)</p>
+              <p class="tl">The <span class="term" data-definition="CI (Continuous Integration) is a server that automatically runs tests and checks every time code is pushed. It reports; it does not judge whether the change is a good idea.">CI</span> job: pre-filled answer, <strong>No</strong>. Green CI is an observation.</p>
+              <p class="tl">An AI review bot: also <strong>No</strong>. It is printed in the template so nobody can forget.</p>
+              <p class="tl">&nbsp;</p>
+              <p class="tl">Then, what a person actually read.</p>
+              <p class="tl">&nbsp;</p>
+              <p class="tl">Which success check from intent.md this change proves, quoted word for word.</p>
+              <p class="tl">Whether it touches the fence. If not, write NONE explicitly.</p>
+              <p class="tl">The exact line of the <span class="term" data-definition="A diff is the list of lines added and removed between two versions of the code. Reviewing a PR means reading its diff.">diff</span> that made up the reviewer's mind.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-warning">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-content">
+            <strong class="callout-title">Old output is not fresh evidence</strong>
+            <p>The gate template ends with: "Do not treat this record, an agent claim or historical output as fresh evidence." Yesterday's green test run says nothing about today's code. Rerun it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Check your understanding</h2>
+        <div class="quiz-container" id="quiz-module5">
+          <div class="quiz-question-block"
+               data-correct="c"
+               data-explanation-right="Right. Your Notion token was blocked, so the check could not run. That is an access result, recorded as OPEN, with the reason. It is neither a failure of the code nor a pass."
+               data-explanation-wrong="The lab is explicit: 'A blocked credential is an access result, not a failure.' And an unrun check can never be a PASS. That leaves OPEN, with the reason written down.">
+            <h3 class="quiz-question">Your company's IT team has not approved a Notion token yet, so the live Notion check could not run. How do you record it?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>FAIL, because the check did not succeed.</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>PASS, because the sample data version works.</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>OPEN, noting the token is blocked.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question-block"
+               data-correct="a"
+               data-explanation-right="Exactly. gate.md pre-fills 'Is it an approval?' with No for CI and review bots. They observe; the human reads the diff against intent.md and decides."
+               data-explanation-wrong="Look at the gate template: CI and review bots are listed with 'Is it an approval? No'. Green checks are inputs to the human decision, not a replacement for it.">
+            <h3 class="quiz-question">CI is green and an AI review bot left "LGTM 👍" on your pull request. Can you mark the gate PASS?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Not yet. A human still has to read the diff against intent.md and quote the deciding line.</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Yes. Two independent checks agreed.</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Yes, if the bot's comment is copied into gate.md.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question-block"
+               data-correct="b"
+               data-explanation-right="Yes. Without a reviewer, the row is by definition 'a hypothesis'. The fix is cheap: have someone rerun one command, or rerun it yourself the next day and say so, as SOLO.md allows."
+               data-explanation-wrong="evidence.md says 'A row without a reviewer is a hypothesis.' The command and exit code are there, but nobody independent has confirmed them yet.">
+            <h3 class="quiz-question">An evidence row has a command, exit code 0 and a quoted line, but the Reviewer column is empty. What is it?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>A PASS; the exit code says so.</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>A hypothesis until someone reruns it.</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>A FAIL, because the table is incomplete.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module5')">Check Answers</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module5')">Try Again</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</section>

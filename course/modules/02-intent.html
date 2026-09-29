@@ -1,0 +1,181 @@
+<section class="module" id="module-2" style="background: var(--color-bg-warm)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">02</span>
+      <h1 class="module-title">Intent: drawing the fence</h1>
+      <p class="module-subtitle">Before anyone writes a line of code, one page says what the agent is for and where it may never go.</p>
+    </header>
+
+    <div class="module-body">
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Surveyors come before builders</h2>
+        <p>Before a house goes up, a surveyor hammers stakes into the ground: this is the plot, that is the neighbour's land. Nobody argues about the fence later because it was agreed before the first brick.</p>
+        <p><code>intent.md</code> is those stakes. It is step 1 of the lab, and <code>AGENTS.md</code> tells the AI assistant to read it before changing <em>anything</em>.</p>
+
+        <div class="step-cards">
+          <div class="step-card"><div class="step-num">1</div><div class="step-body"><strong>Outcome</strong><p>One observable result in plain words: what the reader opens each morning, and what they no longer have to do.</p></div></div>
+          <div class="step-card"><div class="step-num">2</div><div class="step-body"><strong>Success checks</strong><p>Tick-boxes a stranger can verify with one command or one look.</p></div></div>
+          <div class="step-card"><div class="step-num">3</div><div class="step-body"><strong>Boundary</strong><p>What is in scope, what is forbidden, and when to stop and ask a human.</p></div></div>
+          <div class="step-card"><div class="step-num">4</div><div class="step-body"><strong>Owners</strong><p>Three named roles: the Reader, the Maintainer and the Gate.</p></div></div>
+          <div class="step-card"><div class="step-num">5</div><div class="step-body"><strong>Evidence contract + OPEN</strong><p>What counts as proof, and a list of every unknown, written down instead of guessed.</p></div></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Success checks: written for a stranger</h2>
+        <p>The template's own placeholder text tells you how to write a good check. Read the hints closely; they are the lesson.</p>
+
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">intent.md</span>
+            <pre><code><span class="code-line"><span class="code-keyword">## Success checks</span></span>
+<span class="code-line"></span>
+<span class="code-line">- [ ] <span class="code-string">`TEMPLATE — a check a fresh reader can verify with one command or one look, without the author in the room.`</span></span>
+<span class="code-line">- [ ] <span class="code-string">`TEMPLATE`</span></span>
+<span class="code-line">- [ ] <span class="code-string">`TEMPLATE`</span></span>
+<span class="code-line">- [ ] <span class="code-string">`OPEN — a check that needs a live run or an access you do not have yet.`</span></span></code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl">A section heading. The <code>##</code> is <span class="term" data-definition="Markdown is plain text where symbols mean formatting: ## starts a heading, - [ ] draws an empty checkbox, backticks mark code or literal text.">Markdown</span> for "second-level heading."</p>
+              <p class="tl">&nbsp;</p>
+              <p class="tl">Check one: someone who has never met you must be able to confirm it, by running a command or glancing at a page.</p>
+              <p class="tl">Check two: same rule.</p>
+              <p class="tl">Check three: same rule.</p>
+              <p class="tl">Check four is honest about what you cannot prove yet, like a <span class="term" data-definition="A live run means running the agent for real against actual GitLab, Jira and so on, with real access tokens, instead of against saved sample data.">live run</span> you have no access for. It is marked <strong>OPEN</strong>, not quietly dropped.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-accent">
+          <div class="callout-icon">💡</div>
+          <div class="callout-content">
+            <strong class="callout-title">"Without the author in the room"</strong>
+            <p>This phrase is the key to working with AI. The AI is always "the author who is not in the room" tomorrow. If a check needs you to explain it, it cannot catch a mistake the AI made while you were not looking.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The boundary: four stakes in the ground</h2>
+        <p>This is the most important block in the whole lab. Every later document points back to it.</p>
+
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">intent.md</span>
+            <pre><code><span class="code-line"><span class="code-keyword">## Boundary</span></span>
+<span class="code-line"></span>
+<span class="code-line">- <span class="code-property">In scope:</span> <span class="code-string">`TEMPLATE — the folder, the sources, the outputs.`</span></span>
+<span class="code-line">- <span class="code-property">Out of scope:</span> <span class="code-string">`TEMPLATE — what the agent may never do: write to a source, send anything, store a credential.`</span></span>
+<span class="code-line">- <span class="code-property">The model never invents a fact:</span> <span class="code-string">`TEMPLATE — what happens when a source is silent.`</span></span>
+<span class="code-line">- <span class="code-property">Stop or escalate when:</span> <span class="code-string">`TEMPLATE — a write scope is offered, personal data appears, the agent starts deciding instead of describing.`</span></span></code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl">The fence itself.</p>
+              <p class="tl">&nbsp;</p>
+              <p class="tl">Inside the fence: which folder the work lives in, which tools get read, what files come out.</p>
+              <p class="tl">Outside the fence: never change anything in a source, never send a message, never keep a <span class="term" data-definition="A credential is anything that proves identity to a service: a password, an API key, an access token. Leaking one lets a stranger act as you.">credential</span>.</p>
+              <p class="tl">If a source says nothing (say, the calendar is empty), the brief must say that, not make something up. This guards against <span class="term" data-definition="A hallucination is when an AI model states something that sounds plausible but is not true or has no source. It is the main risk of letting a model summarise data.">hallucination</span>.</p>
+              <p class="tl">Tripwires: if someone offers a <span class="term" data-definition="A scope is the list of permissions attached to a token. A 'read' scope lets a program look; a 'write' scope lets it change things.">write scope</span>, if private data shows up, or if the agent starts making decisions instead of describing facts, halt and hand it to a human.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Wish or rule?</h2>
+        <p><code>SOLO.md</code> gives you a test for your own boundary: "Read the boundary aloud. If any line is a wish rather than a rule, it is NEEDS REVISION." Try it on this made-up draft. Click the line that is a wish.</p>
+
+        <div class="bug-challenge">
+          <h3>An example draft boundary (not from the repo). Which line fails the test?</h3>
+          <div class="bug-code">
+            <div class="bug-line" data-line="1" onclick="checkBugLine(this, false)" data-hint="This one is a rule: a specific folder and specific sources. You could check it.">
+              <span class="line-num">1</span><code>In scope: this repo, GitHub + Linear, out/latest.html</code>
+            </div>
+            <div class="bug-line" data-line="2" onclick="checkBugLine(this, false)" data-hint="This is concrete. You can inspect a token's permissions and see whether any are write.">
+              <span class="line-num">2</span><code>Out of scope: any token with a write permission</code>
+            </div>
+            <div class="bug-line bug-target" data-line="3" onclick="checkBugLine(this, true)" data-explanation="&quot;Try to be accurate&quot; is a hope. Nobody can check it. A rule would say what happens: &quot;When a source returns nothing, the brief names that source in its notes.&quot;">
+              <span class="line-num">3</span><code>The model never invents a fact: it should try hard to be accurate</code>
+            </div>
+            <div class="bug-line" data-line="4" onclick="checkBugLine(this, false)" data-hint="Clear trigger, clear action. That is a rule.">
+              <span class="line-num">4</span><code>Stop when: a page contains a personal phone number</code>
+            </div>
+          </div>
+          <div class="bug-feedback"></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Three owners, three different jobs</h2>
+        <div class="icon-rows">
+          <div class="icon-row">
+            <div class="icon-circle" style="background: var(--color-actor-1)">📖</div>
+            <div><strong>Reader</strong><p>"Reads the brief, decides what to push." The person the agent works for.</p></div>
+          </div>
+          <div class="icon-row">
+            <div class="icon-circle" style="background: var(--color-actor-2)">🔧</div>
+            <div><strong>Maintainer</strong><p>"Owns the contract, the prompt, the schedule." Fixes it when it breaks.</p></div>
+          </div>
+          <div class="icon-row">
+            <div class="icon-circle" style="background: var(--color-actor-3)">🚦</div>
+            <div><strong>Gate</strong><p>"Reads every pull request against this file before merge." The human who says yes or no.</p></div>
+          </div>
+        </div>
+        <p>Splitting these roles means nobody grades their own homework, including the AI.</p>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Check your understanding</h2>
+        <div class="quiz-container" id="quiz-module2">
+          <div class="quiz-question-block"
+               data-correct="b"
+               data-explanation-right="Exactly. A blank calendar is a fact too. The boundary says what happens when a source is silent, so the brief says so instead of padding."
+               data-explanation-wrong="Not quite. The 'never invents a fact' line exists for exactly this. Guessing or quietly skipping both hide something from the reader.">
+            <h3 class="quiz-question">The Outlook connection fails one morning and the agent gets no calendar data. What should the brief do, given the intent's boundary?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Guess the usual Tuesday meetings from last week.</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Say plainly that the calendar source was silent.</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Leave the calendar section out so the page looks clean.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question-block"
+               data-correct="c"
+               data-explanation-right="Right. 'The agent starts deciding instead of describing' is a listed tripwire. Re-prioritising tickets is a decision; that belongs to the Reader."
+               data-explanation-wrong="Look at the 'Stop or escalate when' line. The agent's job is to describe; deciding priorities is the Reader's job, per the Owners table.">
+            <h3 class="quiz-question">While testing, you notice the agent wrote "I have moved AL-42 to top priority." Which part of <code>intent.md</code> does this cross?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>None. Helpful suggestions are fine.</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Only the success checks, because the page got longer.</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>The boundary: it is deciding, not describing, and it claims a write.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question-block"
+               data-correct="a"
+               data-explanation-right="Yes. The template reserves a checkbox for exactly this. An honest OPEN is worth more than a check you cannot actually run."
+               data-explanation-wrong="The lab treats unknowns as things to write down, not hide or fake. There is even a pre-made OPEN checkbox for this case.">
+            <h3 class="quiz-question">You have no Jira token yet, so you cannot prove the agent reads Jira correctly. How does that go into <code>intent.md</code>?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>As an <strong>OPEN</strong> success check, plus a line in the OPEN list.</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Leave it out until you have the token.</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Tick it anyway; it will probably work.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module2')">Check Answers</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module2')">Try Again</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</section>

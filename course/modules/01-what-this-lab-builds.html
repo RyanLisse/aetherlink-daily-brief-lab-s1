@@ -1,0 +1,202 @@
+<section class="module" id="module-1" style="background: var(--color-bg)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">01</span>
+      <h1 class="module-title">What this lab builds</h1>
+      <p class="module-subtitle">One morning brief, seven steps, and a repository that starts out empty on purpose.</p>
+    </header>
+
+    <div class="module-body">
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Picture Tuesday, 8:00 in the morning</h2>
+        <p>You open one page. It tells you which code reviews are waiting, which tickets moved overnight, which wiki page someone edited, and what is on your calendar. You did not write it. An <span class="term" data-definition="A program that uses an AI model to decide which steps to take, calls tools to gather information, and produces a result on its own. When talking to AI, you might say: 'build an agent that reads X and writes Y.'">agent</span> did.</p>
+        <p>That is the thing this lab builds: a <strong>daily brief agent</strong>. It reads your work tools every morning and writes a one-page brief.</p>
+
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-1)">
+            <div class="pattern-icon" style="background: var(--color-actor-1)">🦊</div>
+            <h4 class="pattern-title">Code reviews</h4>
+            <p class="pattern-desc"><span class="term" data-definition="GitLab is a website where teams store code and review each other's changes. GitHub is the best-known alternative; this lab supports both.">GitLab</span> at work, or GitHub on your own.</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-2)">
+            <div class="pattern-icon" style="background: var(--color-actor-2)">🎫</div>
+            <h4 class="pattern-title">Tickets</h4>
+            <p class="pattern-desc"><span class="term" data-definition="Jira and Linear are ticket trackers: each piece of work is a card (a 'ticket') with a status like To Do, In Progress or Done.">Jira</span> at work, or Linear on your own.</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-3)">
+            <div class="pattern-icon" style="background: var(--color-actor-3)">📚</div>
+            <h4 class="pattern-title">Team wiki</h4>
+            <p class="pattern-desc"><span class="term" data-definition="Confluence and Notion are shared wikis: web pages a team writes together, like an internal encyclopedia.">Confluence</span> at work, or Notion on your own.</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-4)">
+            <div class="pattern-icon" style="background: var(--color-actor-4)">📅</div>
+            <h4 class="pattern-title">Calendar</h4>
+            <p class="pattern-desc">The Outlook calendar, read through Microsoft's <span class="term" data-definition="An API (Application Programming Interface) is a doorway a service opens for other programs. Instead of clicking around a website, a program sends a structured request and gets structured data back.">API</span>.</p>
+          </div>
+        </div>
+
+        <div class="callout callout-info">
+          <div class="callout-icon">🔒</div>
+          <div class="callout-content">
+            <strong class="callout-title">Read, never write</strong>
+            <p>The agent only reads these sources. It never posts a comment, closes a ticket or sends an email. You will see this rule come back in almost every document of the lab.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The surprise: there is almost no code</h2>
+        <p>Open the <span class="term" data-definition="A repository (or 'repo') is a project folder whose full history is tracked by Git, so every change can be seen, compared and undone.">repository</span> and you find documents, not software. The <span class="term" data-definition="In Git, a branch is a separate line of work. 'main' is the default branch, the shared starting point everyone builds on.">branch</span> called <code>main</code> holds <span class="term" data-definition="A template is a document with the headings already in place and the content left blank, marked TEMPLATE here, for you to fill in.">templates</span> and a package <span class="term" data-definition="A skeleton is the bare frame of a project: config files and settings, but none of the real logic yet.">skeleton</span>. Nothing else.</p>
+
+        <div class="file-tree">
+          <div class="ft-folder open">
+            <span class="ft-name">aetherlink-daily-brief-lab-s1/</span>
+            <span class="ft-desc">The whole lab</span>
+            <div class="ft-children">
+              <div class="ft-file"><span class="ft-name">README.md</span><span class="ft-desc">The seven steps, as a table</span></div>
+              <div class="ft-file"><span class="ft-name">intent.md</span><span class="ft-desc">Step 1: what the agent is for, and its fence</span></div>
+              <div class="ft-file"><span class="ft-name">CLAUDE.md · AGENTS.md</span><span class="ft-desc">Rules the AI assistant loads before touching anything</span></div>
+              <div class="ft-file"><span class="ft-name">progress.md</span><span class="ft-desc">The scoreboard: every step is OPEN until proven</span></div>
+              <div class="ft-file"><span class="ft-name">SOLO.md</span><span class="ft-desc">How to walk the lesson alone</span></div>
+              <div class="ft-folder">
+                <span class="ft-name">docs/</span>
+                <span class="ft-desc">spec · design · plan · evidence · gate · decisions/</span>
+              </div>
+              <div class="ft-folder">
+                <span class="ft-name">reference/</span>
+                <span class="ft-desc">Where the two example briefs (PDFs) go</span>
+              </div>
+              <div class="ft-file"><span class="ft-name">package.json · tsconfig.json</span><span class="ft-desc">The empty code skeleton</span></div>
+            </div>
+          </div>
+        </div>
+
+        <p>That emptiness is the lesson. You are meant to fill the documents first, and the code only after the documents say what it must do.</p>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The whole route in one table</h2>
+        <p>The README lays out every step as a row. Read it as a contract: each step names the file you write and the <strong>proof</strong> that the step is really done.</p>
+
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">README.md</span>
+            <pre><code><span class="code-line"><span class="code-comment">| Step | Phase | You write | Proof |</span></span>
+<span class="code-line"><span class="code-comment">| --- | --- | --- | --- |</span></span>
+<span class="code-line">| 1 | <span class="code-keyword">Plan</span> | <span class="code-string">`intent.md`</span> | A facilitator accepts the boundary |</span>
+<span class="code-line">| 2 | <span class="code-keyword">Plan</span> | <span class="code-string">`docs/spec.md`, `src/brief.ts`, `sample/brief.sample.json`, `test/schema.test.ts`</span> | <span class="code-function">`npm test`</span> green on the schema tests |</span>
+<span class="code-line">| 3 | <span class="code-keyword">Design</span> | <span class="code-string">`docs/design.md`, one ADR, `docs/plan.md`</span> | A stranger can follow the plan and name what proves completion |</span>
+<span class="code-line">| 4 | <span class="code-keyword">Build</span> | <span class="code-string">`src/render.ts`, `src/main.ts`</span> | <span class="code-function">`npm run brief:sample`</span> writes `out/latest.html` |</span>
+<span class="code-line">| 5 | <span class="code-keyword">Build</span> | <span class="code-string">`src/sources.ts`, `src/agent.ts`</span> | <span class="code-function">`npm test`</span> and <span class="code-function">`npm run typecheck`</span> green; wiring proven without a network |</span>
+<span class="code-line">| 6 | <span class="code-keyword">Test</span> | <span class="code-string">`docs/evidence.md` and one screenshot</span> | Three commands with exit codes and a reviewer |</span>
+<span class="code-line">| 7 | <span class="code-keyword">Deploy</span> | <span class="code-string">`docs/gate.md`, `gitlab-ci.example.yml`</span> | PASS / FAIL / OPEN with a quoted line |</span></code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl">Four columns: which step, which phase of the work, what you produce, and how anyone can tell it is finished.</p>
+              <p class="tl">(Table divider, required by <span class="term" data-definition="Markdown is a plain-text format where symbols mean formatting: # is a heading, | draws a table, backticks mark code. Every .md file in this lab is Markdown.">Markdown</span>.)</p>
+              <p class="tl">Step 1: write down what you want. Done when a human accepts where the fence is.</p>
+              <p class="tl">Step 2: describe the brief's exact shape, then write <span class="term" data-definition="A test is a small program that checks another program's behaviour and says pass or fail. 'npm test' runs all of them; 'green' means they all passed.">tests</span> that check it. Done when those tests pass.</p>
+              <p class="tl">Step 3: design the parts, record one decision (an <span class="term" data-definition="An ADR (Architecture Decision Record) is a one-page note explaining one technical choice: the problem, the options, what was chosen, and when to revisit it.">ADR</span>), write a plan. Done when a stranger could follow it.</p>
+              <p class="tl">Step 4: the first real code. Done when a sample brief turns into an <span class="term" data-definition="HTML is the language web pages are written in. Here the brief is saved as an .html file you can open in any browser.">HTML</span> page.</p>
+              <p class="tl">Step 5: connect the real sources. Done when tests and the <span class="term" data-definition="A typecheck asks the TypeScript compiler to confirm every piece of data is used the way its declared shape allows, catching mistakes before the program runs.">typecheck</span> pass without touching the internet.</p>
+              <p class="tl">Step 6: record proof. Done when three commands, their <span class="term" data-definition="An exit code is the number a command returns when it finishes. 0 means success; anything else means something went wrong.">exit codes</span> and a second person are written down.</p>
+              <p class="tl">Step 7: a human decides whether to ship, quoting the line that convinced them.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-accent">
+          <div class="callout-icon">💡</div>
+          <div class="callout-content">
+            <strong class="callout-title">Every step has a "how would I know?"</strong>
+            <p>Notice that no row says "done when it feels finished." Each proof is something another person can check without you in the room. That habit is what lets you trust work an AI did for you.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Watch one idea travel the whole route</h2>
+        <p>Think of a relay race. The baton is an <span class="term" data-definition="An artifact is any concrete thing a step produces and hands on: a document, a test file, a generated page, a screenshot.">artifact</span>, and each runner only starts once the baton is in their hand. Click through to follow one idea, "a brief with no invented facts", from a sentence to a shipped decision.</p>
+
+        <div class="flow-animation" data-steps='[
+          {"highlight":"flow-actor-1","label":"Intent: you write the rule in intent.md. The model never invents a fact."},
+          {"highlight":"flow-actor-2","label":"The rule becomes a spec row and a failing test in docs/spec.md and test/schema.test.ts.","packet":true,"from":"actor-1","to":"actor-2"},
+          {"highlight":"flow-actor-3","label":"Design and plan name the file that holds the rule and the command that proves it.","packet":true,"from":"actor-2","to":"actor-3"},
+          {"highlight":"flow-actor-4","label":"Build: code is written until the failing test turns green.","packet":true,"from":"actor-3","to":"actor-4"},
+          {"highlight":"flow-actor-5","label":"Evidence: the command, its exit code and a quoted output line go into docs/evidence.md. A second person reruns it.","packet":true,"from":"actor-4","to":"actor-5"},
+          {"highlight":"flow-actor-6","label":"Gate: a human reads the pull request against intent.md and writes PASS, FAIL or OPEN.","packet":true,"from":"actor-5","to":"actor-6"},
+          {"highlight":"flow-actor-1","label":"If the evidence surprised anyone, the baton goes back to intent.md. The loop closes.","packet":true,"from":"actor-6","to":"actor-1"}
+        ]'>
+          <div class="flow-actors">
+            <div class="flow-actor" id="flow-actor-1"><div class="flow-actor-icon">🎯</div><span>Intent</span></div>
+            <div class="flow-actor" id="flow-actor-2"><div class="flow-actor-icon">📐</div><span>Spec</span></div>
+            <div class="flow-actor" id="flow-actor-3"><div class="flow-actor-icon">🗺️</div><span>Design + Plan</span></div>
+            <div class="flow-actor" id="flow-actor-4"><div class="flow-actor-icon">🔨</div><span>Build</span></div>
+            <div class="flow-actor" id="flow-actor-5"><div class="flow-actor-icon">🧾</div><span>Evidence</span></div>
+            <div class="flow-actor" id="flow-actor-6"><div class="flow-actor-icon">🚦</div><span>Gate</span></div>
+          </div>
+          <div class="flow-packet" id="flow-packet"></div>
+          <div class="flow-step-label" id="flow-label">Click "Next Step" to begin</div>
+          <div class="flow-controls">
+            <button class="btn flow-next-btn">Next Step</button>
+            <button class="btn flow-reset-btn">Restart</button>
+            <span class="flow-progress"></span>
+          </div>
+        </div>
+
+        <p>This whole cycle has a name: the <span class="term" data-definition="SDLC (Software Development Life Cycle) is the series of phases software goes through: plan, design, build, test, deploy. 'AI-native' means an AI assistant does much of the typing inside each phase while humans decide.">AI-native SDLC</span>. The rest of this course walks it one runner at a time.</p>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Check your understanding</h2>
+        <div class="quiz-container" id="quiz-module1">
+          <div class="quiz-question-block"
+               data-correct="b"
+               data-explanation-right="Right. The lab wants documents first. Without intent.md and a spec, the AI has nothing to check its code against, and neither do you."
+               data-explanation-wrong="Tempting, but the lab is built the other way round. Code written before the intent and spec has nothing to be measured against, so 'working' just means 'it ran'.">
+            <h3 class="quiz-question">You clone the lab and ask your AI assistant to "build the daily brief agent." It immediately starts writing <code>src/agent.ts</code>. What should you do?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Let it run. Code is the goal, and the documents can be filled in afterwards.</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Stop it and point it at step 1: fill <code>intent.md</code> first.</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Ask it to write the tests and the code at the same time to save effort.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question-block"
+               data-correct="c"
+               data-explanation-right="Yes. The README's proof column is always something a third person can check: a command, an exit code, a quoted line. 'Looks good' is a feeling, not proof."
+               data-explanation-wrong="Look again at the Proof column. Every entry is something someone else can re-check without trusting you. A feeling or a promise does not qualify.">
+            <h3 class="quiz-question">A teammate says step 4 is done because "the page looks good." Which reply matches how this lab works?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>"Great, mark it done."</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>"Send me a screenshot and I will take your word for it."</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>"Does <code>npm run brief:sample</code> write <code>out/latest.html</code>? Let me run it too."</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question-block"
+               data-correct="a"
+               data-explanation-right="Correct. Read-only access is the lab's core safety rule. An agent that cannot write cannot close the wrong ticket or email the wrong person."
+               data-explanation-wrong="Not quite. The brief only needs to read. Giving an agent write access 'just in case' is exactly what every document in this lab forbids.">
+            <h3 class="quiz-question">A colleague offers you a Jira token that can both read and edit tickets. It would make setup faster. What does the lab's design say?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Decline it. The agent must stay read-only, so ask for a read-only token.</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Use it, but tell the AI in the prompt not to edit anything.</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Use it now and swap it for a read-only one later.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module1')">Check Answers</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module1')">Try Again</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</section>
