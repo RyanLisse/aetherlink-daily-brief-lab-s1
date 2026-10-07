@@ -57,7 +57,9 @@ on GitLab or GitHub.
 Put the two source PDFs (the Dia "Tuesday Brief" and "Wednesday Brief") in
 `reference/` so step 2 can quote them. They are not part of this repository.
 
-Walking it alone, with your own GitHub, Linear and Notion: `SOLO.md`.
+Walking it alone, with your own GitHub, Linear and Notion: `SOLO.md` — each step
+includes a paste-ready Claude Code **Prompt** block; all seven are also in
+[`docs/prompts.md`](docs/prompts.md).
 
 ## Interactive course
 
