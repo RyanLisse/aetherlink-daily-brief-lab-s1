@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-01",
+  "generatedAt": "2026-09-01T06:55:00+02:00",
+  "language": "en",
+  "painting": {
+    "title": "A Light on the Sea",
+    "artist": "Winslow Homer",
+    "year": "1897",
+    "medium": "oil on canvas",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Winslow_Homer_-_A_Light_on_the_Sea_%281897%29.jpg",
+    "publicDomain": true
+  },
+  "greeting": "Your calendar is a blank canvas today. Just you, the agents, and a wide-open runway.",
+  "push": {
+    "title": "Turn the deploy runbook into a go/no-go call",
+    "body": "The runbook merged yesterday but still waits on four decisions only you can make: the host size, the object-store provider, the missing TRIGGER_SECRET_KEY (OPS-373), and where the deploy tool gets installed. Review also flagged five correctness gaps after the merge. I can pull all of it into one prioritized readiness brief.",
+    "source": "gitlab",
+    "url": "https://gitlab.example.com/acme/platform/-/merge_requests/51"
+  },
+  "todos": [
+    {
+      "title": "Finish and merge MR !51, the verify-skill sync",
+      "body": "Your only open merge request, ready for review since Aug 31. Review left two P1s and a P2 unaddressed: add a recording for the job-detail flow, require seeded data for REST verification, and restore the executable bit on control.mjs.",
+      "source": "gitlab",
+      "url": "https://gitlab.example.com/acme/platform/-/merge_requests/51"
+    },
+    {
+      "title": "Fix the failing verification dashboard pipeline",
+      "body": "The scheduled monitoring run hard-failed at 10:13 yesterday on a deprecated artifact action. It will keep failing on main every run until it is bumped.",
+      "source": "gitlab",
+      "url": "https://gitlab.example.com/acme/platform/-/pipelines/8841"
+    }
+  ],
+  "updates": [
+    {
+      "title": "Postgres test-isolation fix merged, with loose ends",
+      "label": "Platform",
+      "body": "OPS-369 landed on main: per-process throwaway databases, 2,602 stale checkpoint rows cleaned, suite slightly faster. Review flagged two edge cases that slipped through: orphaned test databases when setup aborts, and a partial-config path that can still write the shared database.",
+      "source": "jira",
+      "url": "https://acme.atlassian.net/browse/OPS-369"
+    }
+  ],
+  "day": [],
+  "sources": ["gitlab", "jira", "outlook"],
+  "notes": ["Outlook returned no events for 2026-09-01; the day section is empty on purpose."]
+}
