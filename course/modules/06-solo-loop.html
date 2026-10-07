@@ -1,0 +1,166 @@
+<section class="module" id="module-6" style="background: var(--color-bg-warm)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">06</span>
+      <h1 class="module-title">The SOLO loop</h1>
+      <p class="module-subtitle">Walking all seven steps on your own, catching up when stuck, and why the route ends where it began.</p>
+    </header>
+
+    <div class="module-body">
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">A trail with numbered markers</h2>
+        <p>A good hiking trail has numbered markers, and at each one a map showing exactly where you should be. Lost? Walk to the next marker and carry on from there.</p>
+        <p><code>SOLO.md</code> is that trail for one person with their own GitHub, Linear and Notion. The markers are Git <span class="term" data-definition="A Git tag is a permanent name stuck on one specific commit, like a bookmark. 'step-2-spec' always points at the exact state of the reference solution after step 2.">tags</span>: <code>step-1-intent</code> through <code>step-7-gate-deploy</code>, each pointing at the reference solution after that step.</p>
+
+        <div class="step-cards">
+          <div class="step-card"><div class="step-num">1</div><div class="step-body"><strong>Plan: intent (15 min)</strong><p>Claude Code interviews you one question at a time. You cut.</p></div></div>
+          <div class="step-card"><div class="step-num">2</div><div class="step-body"><strong>Plan: spec and contract, test first (25 min)</strong><p>Quote the PDFs, write the failing test, then the code.</p></div></div>
+          <div class="step-card"><div class="step-num">3</div><div class="step-body"><strong>Design: one decision, a plan with proof (15 min)</strong><p>Claude Code in <span class="term" data-definition="Plan mode is a Claude Code setting where the assistant can read files and propose a plan but cannot edit anything until you accept it.">plan mode</span>: read-only until you accept.</p></div></div>
+          <div class="step-card"><div class="step-num">4</div><div class="step-body"><strong>Build: render the sample (25 min)</strong><p>The first artifact: <code>out/latest.html</code>, no API key needed.</p></div></div>
+          <div class="step-card"><div class="step-num">5</div><div class="step-body"><strong>Build: the loop and one read-only tool (20 min + live run)</strong><p>Take the reference files on purpose, then add one tool yourself.</p></div></div>
+          <div class="step-card"><div class="step-num">6</div><div class="step-body"><strong>Test: record the evidence (15 min)</strong><p>Three commands, exit codes, one screenshot, one reviewer.</p></div></div>
+          <div class="step-card"><div class="step-num">7</div><div class="step-body"><strong>Deploy: the gate and the schedule (15 min)</strong><p>Decide the gate, then run the brief every weekday morning.</p></div></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The three commands you will use all day</h2>
+
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">SOLO.md</span>
+            <pre><code><span class="code-line"><span class="code-function">git</span> diff main step-2-spec --stat              <span class="code-comment"># what a step adds</span></span>
+<span class="code-line"><span class="code-function">git</span> diff step-2-spec -- docs/spec.md          <span class="code-comment"># your file against the reference</span></span>
+<span class="code-line"><span class="code-function">git</span> checkout step-5-build-agent -- src/sources.ts   <span class="code-comment"># take one reference file</span></span></code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl"><strong>Peek at the map.</strong> List which files the reference solution changed between empty <code>main</code> and the end of step 2, with a count of lines per file. (<span class="term" data-definition="git diff shows the differences between two versions. --stat shrinks that to a summary: which files changed and by how many lines.">git diff</span>.)</p>
+              <p class="tl"><strong>Compare your work.</strong> Show, line by line, how <em>your</em> spec differs from the reference spec.</p>
+              <p class="tl"><strong>Catch up.</strong> Copy just one file from the step 5 reference into your branch, leaving everything else as you wrote it. (<span class="term" data-definition="git checkout <tag> -- <file> replaces one file in your working folder with that file's version at the given tag. Nothing else changes.">git checkout</span>.)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-info">
+          <div class="callout-icon">🧭</div>
+          <div class="callout-content">
+            <strong class="callout-title">Catching up is part of the design</strong>
+            <p>Step 5 opens with "this is the deliberate catch-up": you are told to take the reference <code>sources.ts</code> and <code>agent.ts</code>, then read them. Reading good code and adding one piece yourself teaches more than fighting an SDK for two hours.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The live run: read the log, not just the page</h2>
+        <p>Step 5 ends with the first real run, using your read-only tokens from <code>.env</code>.</p>
+
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">SOLO.md</span>
+            <pre><code><span class="code-line"><span class="code-function">set</span> -a &amp;&amp; . ./.env &amp;&amp; <span class="code-function">set</span> +a</span>
+<span class="code-line"><span class="code-function">npm</span> run brief 2&gt; run.log</span>
+<span class="code-line"></span>
+<span class="code-line">Read <span class="code-string">`run.log`</span>: the <span class="code-string">`mcp=[…]`</span> line names the connected sources, every <span class="code-string">`→`</span></span>
+<span class="code-line">line is a tool call. Then read <span class="code-string">`out/latest.html`</span>.</span></code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl">Load every setting in <code>.env</code> (your tokens) as <span class="term" data-definition="Environment variables are named settings the operating system hands to a program when it starts, like GITHUB_TOKEN. They keep secrets out of the code itself.">environment variables</span> for this terminal session.</p>
+              <p class="tl">Run the real brief, and send its diagnostic output (<code>2&gt;</code>, the error stream) into a file called <code>run.log</code>.</p>
+              <p class="tl">&nbsp;</p>
+              <p class="tl">In the log, one line lists which sources connected over <span class="term" data-definition="MCP (Model Context Protocol) is a standard way to plug tools and data sources into an AI model, so the model can call 'read Linear issues' like a function.">MCP</span>, and each arrow line is one <span class="term" data-definition="A tool call is the moment the AI model asks the program to run one of its tools, for example 'list my open pull requests', and receives the result back.">tool call</span>.</p>
+              <p class="tl">Only after reading the log, read the brief itself.</p>
+            </div>
+          </div>
+        </div>
+
+        <p>The check that follows is the sharpest in the lab: "is every sentence in the brief traceable to a tool call in <code>run.log</code>?" A sentence with no matching tool call came from nowhere.</p>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Where the trail ends: back at the start</h2>
+
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">SOLO.md</span>
+            <pre><code><span class="code-line"><span class="code-keyword">## When you are done</span></span>
+<span class="code-line"></span>
+<span class="code-line">Seven files a stranger can point at, one brief you did not write, and a gate</span>
+<span class="code-line">you decided. Tomorrow's run reads what you merged today; when a footnote in</span>
+<span class="code-line">the brief changes <span class="code-string">`intent.md`</span>, the loop has closed.</span></code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl">What "finished" looks like.</p>
+              <p class="tl">&nbsp;</p>
+              <p class="tl">Artifacts anyone can inspect, a brief written by the agent, and a human decision on record.</p>
+              <p class="tl">Tomorrow the scheduled run uses what you <span class="term" data-definition="To merge is to fold the changes from your branch into main, so they become part of the shared, official version.">merged</span> today. And when something the brief reports teaches you that your intent was wrong...</p>
+              <p class="tl">...you go back and change <code>intent.md</code>. The route is a circle, not a line.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-accent">
+          <div class="callout-icon">💡</div>
+          <div class="callout-content">
+            <strong class="callout-title">Documents are living, not paperwork</strong>
+            <p>AGENTS.md rule 6: "when evidence changes the intent, the spec or the plan, go back and change that document before continuing." If your AI assistant patches code to match a surprise without updating the document above it, the documents stop being true, and the next session reads a lie.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Check your understanding</h2>
+        <div class="quiz-container" id="quiz-module6">
+          <div class="quiz-question-block"
+               data-correct="b"
+               data-explanation-right="Right. The tags exist for exactly this. Copy the one file you are stuck on from the reference, then read the diff to understand it, as step 4's hint suggests."
+               data-explanation-wrong="SOLO.md builds catching up into the route. 'git checkout step-4-build-render -- src/render.ts' takes one reference file without throwing away the rest of your work.">
+            <h3 class="quiz-question">It is 45 minutes into step 4 and your renderer still will not produce a page. You have a workshop to finish. What does SOLO.md suggest?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Delete your branch and start the lab again from main.</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Take the reference <code>src/render.ts</code> from the <code>step-4-build-render</code> tag, then read the diff.</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Skip to step 5; rendering can be fixed later.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question-block"
+               data-correct="c"
+               data-explanation-right="Exactly. Every sentence must trace to a tool call in run.log. A claim about a calendar with no calendar tool call was invented, which breaks the intent's 'never invents a fact' rule."
+               data-explanation-wrong="Check the log. If run.log has no Outlook tool call, the agent could not have known about that meeting. It is an invented fact, which the boundary forbids.">
+            <h3 class="quiz-question">Your first live brief mentions "your 10:00 design review," but <code>run.log</code> shows no calendar tool call at all. What does that tell you?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>The log is incomplete; trust the brief.</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Nothing. The meeting might be real.</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>The model invented it. That sentence fails the traceability check.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question-block"
+               data-correct="a"
+               data-explanation-right="Yes. AGENTS.md rule 6: evidence changed the intent, so update intent.md (and the spec) first, then the code. Otherwise tomorrow's session loads an intent that no longer matches reality."
+               data-explanation-wrong="The lab treats the phases as a loop. When evidence shows the intent was wrong, the document gets changed first, so every later session and reviewer reads the truth.">
+            <h3 class="quiz-question">After a week of briefs you realise nobody reads the Confluence section. You want to drop it. Where do you start?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Update <code>intent.md</code> and the spec first, then change the code.</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Ask the AI to delete the Confluence code; the docs can catch up.</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Leave everything and tell the reader to skip that section.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module6')">Check Answers</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module6')">Try Again</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</section>

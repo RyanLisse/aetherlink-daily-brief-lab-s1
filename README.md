@@ -5,6 +5,8 @@ that reads GitLab, Jira, Confluence and the Outlook calendar (or your own GitHub
 writes a one-page brief. `main` is empty on purpose: templates, a package
 skeleton and nothing else. Every step of the lesson leaves one artifact here.
 
+Academy Workshop 5 walks this repository as the AI-native SDLC guided lesson (Academy host path `/workshop/5`).
+
 ## The steps
 
 | Step | Phase | You write | Proof |
@@ -16,6 +18,10 @@ skeleton and nothing else. Every step of the lesson leaves one artifact here.
 | 5 | Build | `src/sources.ts`, `src/agent.ts` | `npm test` and `npm run typecheck` green; wiring proven without a network |
 | 6 | Test | `docs/evidence.md` and one screenshot | Three commands with exit codes and a reviewer |
 | 7 | Deploy | `docs/gate.md`, `gitlab-ci.example.yml` | PASS / FAIL / OPEN with a quoted line |
+
+## Always-on artifacts
+
+`CLAUDE.md` · `AGENTS.md` · `progress.md` · `SOLO.md` — read before you change anything; append `progress.md` each SOLO.
 
 ## How to work
 
@@ -51,4 +57,20 @@ on GitLab or GitHub.
 Put the two source PDFs (the Dia "Tuesday Brief" and "Wednesday Brief") in
 `reference/` so step 2 can quote them. They are not part of this repository.
 
-Walking it alone, with your own GitHub, Linear and Notion: `SOLO.md`.
+Walking it alone, with your own GitHub, Linear and Notion: `SOLO.md` — each step
+includes a paste-ready Claude Code **Prompt** block; all seven are also in
+[`docs/prompts.md`](docs/prompts.md).
+
+## Interactive course
+
+`course/` is a self-contained, six-module course that explains this lab's
+workflow to someone who has never read a spec: intent, spec, design and plan,
+the agent instructions, evidence and the gate, and the SOLO loop. Every code
+block quotes a file in this repository exactly. No install, no server:
+
+```bash
+open course/index.html
+```
+
+To change it, edit `course/modules/*.html` and rebuild with
+`cd course && bash build.sh`.

@@ -1,0 +1,210 @@
+<section class="module" id="module-4" style="background: var(--color-bg-warm)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">04</span>
+      <h1 class="module-title">The rulebook the AI reads</h1>
+      <p class="module-subtitle">CLAUDE.md, AGENTS.md and progress.md: how the lab briefs your AI assistant before it touches a single file.</p>
+    </header>
+
+    <div class="module-body">
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The note on the fridge</h2>
+        <p>When a house-sitter arrives, you do not rely on them remembering your phone call. You leave a note on the fridge: feed the cat twice, never open the back door, here is what is already done. They read it on arrival, every time.</p>
+        <p>Your AI assistant starts every session with no memory of yesterday. These files are its note on the fridge.</p>
+
+        <div class="icon-rows">
+          <div class="icon-row">
+            <div class="icon-circle" style="background: var(--color-actor-1)">📌</div>
+            <div><strong>CLAUDE.md</strong><p>Loaded automatically by <span class="term" data-definition="Claude Code is Anthropic's AI coding assistant that runs in your terminal. It reads CLAUDE.md at the start of every session as its standing instructions for this project.">Claude Code</span>. Pulls in the other three files.</p></div>
+          </div>
+          <div class="icon-row">
+            <div class="icon-circle" style="background: var(--color-actor-2)">📜</div>
+            <div><strong>AGENTS.md</strong><p>Seven contribution rules, written for any AI agent (or human) working in the repo.</p></div>
+          </div>
+          <div class="icon-row">
+            <div class="icon-circle" style="background: var(--color-actor-3)">🎯</div>
+            <div><strong>intent.md</strong><p>The outcome and the fence, from Module 2.</p></div>
+          </div>
+          <div class="icon-row">
+            <div class="icon-circle" style="background: var(--color-actor-4)">📊</div>
+            <div><strong>progress.md</strong><p>The scoreboard: what is VERIFIED, what is still OPEN.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">CLAUDE.md: four lines that do the loading</h2>
+
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">CLAUDE.md</span>
+            <pre><code><span class="code-line"><span class="code-keyword"># Project instructions</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-function">@intent.md</span></span>
+<span class="code-line"><span class="code-function">@progress.md</span></span>
+<span class="code-line"><span class="code-function">@AGENTS.md</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-string">`intent.md`</span> and <span class="code-string">`progress.md`</span> are project convention files; their presence at</span>
+<span class="code-line">the repository root does not load them independently. Keep these imports</span>
+<span class="code-line">explicit so the outcome, the current-state board and the contribution rules are</span>
+<span class="code-line">loaded together before anything is changed.</span></code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl">The title of the note.</p>
+              <p class="tl">&nbsp;</p>
+              <p class="tl">The <code>@</code> is an <span class="term" data-definition="An import pulls the content of another file in, as if it were pasted at that spot. Here, '@intent.md' makes Claude Code read intent.md as part of CLAUDE.md.">import</span>: "paste the whole of intent.md in here."</p>
+              <p class="tl">Also paste in the current scoreboard.</p>
+              <p class="tl">Also paste in the contribution rules.</p>
+              <p class="tl">&nbsp;</p>
+              <p class="tl">A warning for whoever edits this file later: just having intent.md and progress.md in the folder does nothing.</p>
+              <p class="tl">The assistant only reads them because of the <code>@</code> lines above.</p>
+              <p class="tl">So do not delete those lines. The goal, the status and the rules have to arrive together...</p>
+              <p class="tl">...before the assistant changes anything.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-info">
+          <div class="callout-icon">🧠</div>
+          <div class="callout-content">
+            <strong class="callout-title">Context is loaded, not remembered</strong>
+            <p>An AI model only "knows" what is in its <span class="term" data-definition="The context window is everything the model can see at once: your message, loaded files, earlier replies. Anything outside it simply does not exist for the model.">context window</span> right now. If a rule matters every session, make it load automatically instead of hoping you will remember to paste it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">A session, as a group chat</h2>
+        <p>Here is what the start of a working session looks like if the files could talk. You ask the assistant to jump straight to step 5.</p>
+
+        <div class="chat-window" id="chat-module4">
+          <div class="chat-messages">
+            <div class="chat-message" data-msg="0" data-sender="you" style="display:none">
+              <div class="chat-avatar" style="background: var(--color-actor-5)">Y</div>
+              <div class="chat-bubble"><span class="chat-sender" style="color: var(--color-actor-5)">You</span><p>Hey Claude, skip ahead and build the Jira connection for step 5.</p></div>
+            </div>
+            <div class="chat-message" data-msg="1" data-sender="claudemd" style="display:none">
+              <div class="chat-avatar" style="background: var(--color-actor-1)">C</div>
+              <div class="chat-bubble"><span class="chat-sender" style="color: var(--color-actor-1)">CLAUDE.md</span><p>Session starting. Loading @intent.md, @progress.md and @AGENTS.md before anyone touches a file.</p></div>
+            </div>
+            <div class="chat-message" data-msg="2" data-sender="progress" style="display:none">
+              <div class="chat-avatar" style="background: var(--color-actor-4)">P</div>
+              <div class="chat-bubble"><span class="chat-sender" style="color: var(--color-actor-4)">progress.md</span><p>Status board: steps 1 through 7 are all OPEN. Nothing is verified yet.</p></div>
+            </div>
+            <div class="chat-message" data-msg="3" data-sender="agents" style="display:none">
+              <div class="chat-avatar" style="background: var(--color-actor-2)">A</div>
+              <div class="chat-bubble"><span class="chat-sender" style="color: var(--color-actor-2)">AGENTS.md</span><p>Rule 1: follow the step order in the README; "do not skip to the code before the document of that step exists."</p></div>
+            </div>
+            <div class="chat-message" data-msg="4" data-sender="intent" style="display:none">
+              <div class="chat-avatar" style="background: var(--color-actor-3)">I</div>
+              <div class="chat-bubble"><span class="chat-sender" style="color: var(--color-actor-3)">intent.md</span><p>Also, I am still a TEMPLATE. There is no outcome and no boundary yet, so nobody can say what a correct Jira connection even is.</p></div>
+            </div>
+            <div class="chat-message" data-msg="5" data-sender="claude" style="display:none">
+              <div class="chat-avatar" style="background: var(--color-accent)">✦</div>
+              <div class="chat-bubble"><span class="chat-sender" style="color: var(--color-accent)">Claude Code</span><p>Understood. I will not write step 5 code yet. Shall I interview you, one question at a time, to fill intent.md first?</p></div>
+            </div>
+            <div class="chat-message" data-msg="6" data-sender="agents" style="display:none">
+              <div class="chat-avatar" style="background: var(--color-actor-2)">A</div>
+              <div class="chat-bubble"><span class="chat-sender" style="color: var(--color-actor-2)">AGENTS.md</span><p>And when you do reach step 5, rule 3: read-only by construction. "No built-in tools, only the source tools you define, no write scope on any token. Never widen that."</p></div>
+            </div>
+            <div class="chat-message" data-msg="7" data-sender="you" style="display:none">
+              <div class="chat-avatar" style="background: var(--color-actor-5)">Y</div>
+              <div class="chat-bubble"><span class="chat-sender" style="color: var(--color-actor-5)">You</span><p>Fair. Interview me.</p></div>
+            </div>
+          </div>
+          <div class="chat-typing" style="display:none">
+            <div class="chat-avatar" id="chat-module4-typing-avatar">?</div>
+            <div class="chat-typing-dots"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>
+          </div>
+          <div class="chat-controls">
+            <button class="btn chat-next-btn">Next Message</button>
+            <button class="btn chat-all-btn">Play All</button>
+            <button class="btn chat-reset-btn">Replay</button>
+            <span class="chat-progress"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">AGENTS.md: the rules that stop AI from bluffing</h2>
+        <p>Three of the seven rules are aimed squarely at the ways AI assistants go wrong.</p>
+
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">AGENTS.md</span>
+            <pre><code><span class="code-line"><span class="code-number">2.</span> Verify the current state with the relevant command. Do not invent evidence, exit codes, screenshots or run results. Quote actual output; mark unrun checks <span class="code-string">`OPEN`</span>.</span>
+<span class="code-line"><span class="code-number">3.</span> The agent you build is read-only by construction: no built-in tools, only the source tools you define, no write scope on any token. Never widen that.</span>
+<span class="code-line"><span class="code-number">4.</span> Never put a credential, a token or private company data in this repository, a prompt or a document. Sample data lives in <span class="code-string">`sample/`</span>.</span></code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl"><strong>No bluffing.</strong> Run the command; do not guess what it would say. If you did not run it, say OPEN. This targets AI's habit of confidently reporting "all tests pass" without running them.</p>
+              <p class="tl"><strong>No extra powers.</strong> "Built-in tools" are things like a <span class="term" data-definition="A shell is the command line: a text interface where any program can be run, files deleted, and so on. Giving an AI model a shell gives it very broad power.">shell</span> or file editor. The brief agent gets none of them, only the read-only source tools you write.</p>
+              <p class="tl"><strong>No secrets.</strong> A <span class="term" data-definition="A token is a long secret string that acts as a password for a program. Anyone holding it can do whatever its permissions allow.">token</span> pasted into a prompt or committed to the repo can leak. Real tokens live only in a local <code>.env</code> file that Git ignores.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-accent">
+          <div class="callout-icon">💡</div>
+          <div class="callout-content">
+            <strong class="callout-title">Two kinds of agent, two sets of rules</strong>
+            <p>There are two AIs in this lab: your coding assistant (which writes the code) and the brief agent (which the code becomes). AGENTS.md governs the first and fences in the second. Keeping them apart in your head is half the battle.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Check your understanding</h2>
+        <div class="quiz-container" id="quiz-module4">
+          <div class="quiz-question-block"
+               data-correct="b"
+               data-explanation-right="Right. AGENTS.md rule 2: quote actual output. The fix is not to trust or distrust the assistant, it is to ask for the evidence: the command, the exit code and a real output line."
+               data-explanation-wrong="AGENTS.md rule 2 forbids inventing exit codes or run results. You do not need to guess whether it ran; ask for the quoted output and the exit code, or run it yourself.">
+            <h3 class="quiz-question">Your assistant reports: "Step 2 complete, all tests pass!" It shows no command output. What do you do?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Mark step 2 VERIFIED in progress.md.</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Ask it to run <code>npm test</code> and quote the exit code and an output line, or run it yourself.</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Assume it is lying and start the step over.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question-block"
+               data-correct="c"
+               data-explanation-right="Yes. CLAUDE.md explains that the files are only loaded because of the @ lines. Without them the assistant starts every session blind to the intent, the status and the rules."
+               data-explanation-wrong="Look at the paragraph under the imports: the files' 'presence at the repository root does not load them independently.' Remove the @ lines and the assistant never sees them.">
+            <h3 class="quiz-question">A teammate "tidies up" CLAUDE.md by deleting the three <code>@</code> lines, since the files are right there in the folder anyway. What happens?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Nothing; Claude Code finds every .md file on its own.</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>The project stops building.</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>The assistant starts sessions without the intent, status board or rules in its context.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question-block"
+               data-correct="a"
+               data-explanation-right="Correct. Rule 4 bans credentials from prompts, documents and the repo. Tokens belong in .env, which .gitignore keeps out of Git."
+               data-explanation-wrong="AGENTS.md rule 4 is blunt: never put a token in a prompt or a document. The lab's answer is the .env file, which Git is told to ignore.">
+            <h3 class="quiz-question">You want the assistant to test the Linear connection. What is the right way to give it your Linear API key?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Put it in your local <code>.env</code> file and let the program read it from there.</span></button>
+              <button class="quiz-option" data-value="b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Paste it into the chat so the assistant can use it.</span></button>
+              <button class="quiz-option" data-value="c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Save it in <code>docs/evidence.md</code> so the reviewer can rerun the check.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module4')">Check Answers</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module4')">Try Again</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</section>
